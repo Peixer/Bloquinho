@@ -2,7 +2,6 @@ angular.module('starter.controllers', []);
 
 angular.module('starter', [
     'ionic',
-    'ionic.service.core',
     'starter.controllers'])
 
     .run(function ($ionicPlatform) {
@@ -40,7 +39,7 @@ angular.module('starter', [
             })
             .state('cliente.detalhes', {
                 url: '/detalhes',
-                templateUrl: 'templates/cliente/cliente.html',
+                templateUrl: 'templates/cliente/detalhesCliente.html',
                 controller: 'ClienteCtrl'
             });
 
