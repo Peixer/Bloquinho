@@ -4,15 +4,5 @@
     </ion-nav-bar>
 
     <ion-content class="padding">
-        <ion-list>
-            <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes"
-                      ng-click="proximaTela()" on-hold="showActionSheet()">
-                <i class="icon ion-person-stalker"></i>
-                <h2>{{x.nome}}</h2>
-                <h4 ng-class="{'vermelho': x.estaNegativo, 'verde': !x.estaNegativo}">R$ {{x.total}}</h4>
-                <i class="icon ion-cash"></i>
-            </ion-item>
-        </ion-list>
-
     </ion-content>
 </ion-view>

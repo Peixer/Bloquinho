@@ -40,7 +40,7 @@ angular.module('starter', [
             .state('cliente.detalhes', {
                 url: '/detalhes',
                 templateUrl: 'templates/cliente/detalhesCliente.html',
-                controller: 'ClienteCtrl'
+                controller: 'DetalhesClienteCtrl'
             });
 
         $urlRouterProvider.otherwise('/clientes');

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('ClienteCtrl', [
+    .controller('DetalhesClienteCtrl', [
         '$scope', function ($scope) {
-            $scope.nome = "João";
+
         }]);
