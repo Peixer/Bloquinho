@@ -20,28 +20,30 @@ angular.module('starter', [
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('clientes', {
-                url: '/clientes',
-                templateUrl: 'templates/cliente/lista_clientes.html',
-                controller: 'ClientesCtrl'
-            })
-            .state('registros', {
-                url: '/registros',
-                templateUrl: 'templates/registro/lista_registros.html',
-                controller: 'RegistrosCtrl'
-            })
-            .state('cliente', {
+            .state('tab', {
                 abstract: true,
-                cache: false,
-                url: '/cliente',
-                templateUrl: 'templates/menu.html',
+                url: '/tab',
+                templateUrl: 'templates/tab.html',
                 controller: 'MenuCtrl'
             })
-            .state('cliente.detalhes', {
-                url: '/detalhes',
-                templateUrl: 'templates/cliente/detalhesCliente.html',
-                controller: 'DetalhesClienteCtrl'
+            .state('tab.registros', {
+                url: '/tab-registros',
+                views: {
+                    'registros': {
+                        templateUrl: 'templates/registro/lista_registros.html',
+                        controller: 'RegistrosCtrl'
+                    }
+                }
+            })
+            .state('tab.clientes', {
+                url: '/tab-clientes',
+                views: {
+                    'clientes': {
+                        templateUrl: 'templates/cliente/lista_clientes.html',
+                        controller: 'ClientesCtrl'
+                    }
+                }
             });
 
-        $urlRouterProvider.otherwise('/clientes');
+        $urlRouterProvider.otherwise('/tab/tab-registros');
     });
