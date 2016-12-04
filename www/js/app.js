@@ -39,7 +39,7 @@ angular.module('starter', [
                 controller: 'AdicionarClienteCtrl'
             })
             .state('registroCliente', {
-                url: '/registro-cliente/{cliente}',
+                url: '/registro-cliente/{id}',
                 templateUrl: 'templates/registro/registroCliente.html',
                 controller: 'RegistroClienteCtrl'
             })

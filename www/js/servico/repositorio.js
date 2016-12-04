@@ -45,7 +45,8 @@ angular.module('starter.services')
                 total: cliente.total,
                 endereco: cliente.endereco,
                 email: cliente.email,
-                telefone: cliente.telefone
+                telefone: cliente.telefone,
+                movimentacoes: cliente.movimentacoes
             }).then(function (response) {
                 console.log(response)
             }).catch(function (error) {
@@ -61,7 +62,8 @@ angular.module('starter.services')
                 total: cliente.total,
                 endereco: cliente.endereco,
                 email: cliente.email,
-                telefone: cliente.telefone
+                telefone: cliente.telefone,
+                movimentacoes: cliente.movimentacoes
             }).then(function (response) {
                 console.log(response)
             }).catch(function (error) {
@@ -71,6 +73,10 @@ angular.module('starter.services')
 
         this.deletarCliente = function (item) {
             db.remove(item._id, item._rev);
+        };
+
+        this.obterClienteComId = function (id) {
+            return db.get(id);
         };
 
     }]);

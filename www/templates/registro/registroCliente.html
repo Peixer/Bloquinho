@@ -6,11 +6,17 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-    <ion-content class="padding has-header">
-        <h1 style="align-center: true;">Total R$ {{cliente.total}}</h1>
+  <div class="bar bar-subheader">
+        <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo, 'verde': estaComSaldoPositivo}">Total: R$ {{cliente.total}}</h2>
+    </div>
+
+
+    <ion-content class="padding has-subheader">
         <ion-list>
-            <ion-item>
-                <label>informacoes </label>
+            <ion-item class="item-avatar item-icon-left" ng-repeat="x in cliente.movimentacoes track by $index">
+                 <i class="icon ion-cash"></i>
+                <h2 style="font-size: 15px;">{{x.descricao}}</h2>
+                <h3 ng-class="{'vermelho': !x.ehRecibo, 'verde': x.ehRecibo}">R$ {{x.valor}}</h3>
             </ion-item>
         </ion-list>
     </ion-content>
@@ -24,16 +30,16 @@
          <div class="list">
             <label class="item item-input">
                 <span class="input-label">Descrição</span>
-                <input type="text">
+                <input type="text" ng-model="registro.descricao">
             </label>
             <label class="item item-input">
                 <span class="input-label">Valor</span>
-                <input type="number">
+                <input type="number" ng-model="registro.valor">
             </label>
          </div>
            
             <div class="row row-bottom">
-                 <button class="button button-full button-balanced" style="font-size:27px;" ng-click="closeModal()">Salvar</button>
+                 <button class="button button-full button-balanced" style="font-size:27px;" ng-click="salvar()">Salvar</button>
             </div>
       </ion-content>
     </div>
