@@ -1,16 +1,17 @@
 angular.module('starter.controllers')
     .controller('AdicionarClienteCtrl', [
-        '$scope', '$repositorio', '$ionicPopup', function($scope, $repositorio, $ionicPopup) {
+        '$scope', '$state', '$repositorio', '$ionicPopup', '$stateParams',
+        function ($scope, $state, $repositorio, $ionicPopup, $stateParams) {
 
-            $scope.cliente = {};
+            $scope.cliente = {}
             inicializarCliente();
 
-            $scope.adicionarCliente = function() {
+            $scope.adicionarCliente = function () {
 
                 if (validarCampos()) {
                     $repositorio.gravarCliente($scope.cliente);
-                    inicializarCliente();
-                    // Informar que cliente foi adicionado com sucesso
+
+                    $state.go('tab.clientes');
                 }
             };
 
@@ -23,8 +24,7 @@ angular.module('starter.controllers')
                     });
 
                     return false;
-                }
-                else if ($scope.cliente.email == '') {
+                } else if ($scope.cliente.email == '') {
                     $ionicPopup.alert({
                         title: 'Atenção',
                         template: 'Email está inválido'
@@ -37,14 +37,19 @@ angular.module('starter.controllers')
             };
 
             function inicializarCliente() {
-                $scope.cliente = {
-                    total: 0,
-                    telefone: '',
-                    email: '',
-                    nome: '',
-                    endereco: ''
-                };
-
+                if ($stateParams.cliente != '') {
+                    $scope.cliente = JSON.parse($stateParams.cliente);
+                } else {
+                    $scope.cliente = {
+                        total: 0,
+                        telefone: '',
+                        email: '',
+                        nome: '',
+                        endereco: ''
+                    };
+                }
             }
 
-        }]);
+
+        }
+    ]);

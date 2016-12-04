@@ -25,13 +25,37 @@ angular.module('starter.services')
             return items;
         };
 
-        this.gravarCliente = function (item) {
+        this.gravarCliente = function (cliente) {
+            if (cliente._id != null) {
+                atualizarCliente(cliente);
+            } else {
+                adicionarCliente(cliente);
+            }
+        };
+
+        function adicionarCliente(cliente) {
             db.post({
-                nome: item.nome,
-                total: item.total,
-                endereco: item.endereco,
-                email: item.email,
-                telefone: item.telefone
+                nome: cliente.nome,
+                total: cliente.total,
+                endereco: cliente.endereco,
+                email: cliente.email,
+                telefone: cliente.telefone
+            }).then(function (response) {
+                console.log(response)
+            }).catch(function (error) {
+                console.log(error);
+            });
+        };
+
+        function atualizarCliente(cliente) {
+            db.put({
+                _id: cliente._id,
+                _rev: cliente._rev,
+                nome: cliente.nome,
+                total: cliente.total,
+                endereco: cliente.endereco,
+                email: cliente.email,
+                telefone: cliente.telefone
             }).then(function (response) {
                 console.log(response)
             }).catch(function (error) {

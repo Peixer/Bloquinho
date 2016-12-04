@@ -7,10 +7,16 @@
   </ion-nav-bar>
   <ion-content class="padding">
     <ion-list>
-      <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes" ng-click="detalhesCliente($index)" on-hold="showActionSheet()">
+      <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes">
         <i class="icon ion-person-stalker"></i>
         <h2>{{x.nome}}</h2>
         <h4 ng-class="{'vermelho': x.estaNegativo, 'verde': !x.estaNegativo}">R$ {{x.total}}</h4>
+        <ion-option-button class="button button-assertive icon-left ion-trash-a" ng-click="deletarCliente($index)">
+          Deletar
+        </ion-option-button>
+        <ion-option-button class="button button-positive icon-left ion-edit" ng-click="editarCliente($index)">
+          Editar
+        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

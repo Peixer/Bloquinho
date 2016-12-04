@@ -24,19 +24,19 @@ angular.module('starter', [
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('detalhesCliente', {
-                url: '/detalhes/{product}',
+                url: '/detalhes/{cliente}',
                 templateUrl: 'templates/cliente/detalhesCliente.html',
                 controller: 'DetalhesClienteCtrl'
             })
             .state('adicionarCliente', {
-                url: '/adicionar-cliente',
+                url: '/adicionar-cliente/{cliente}',
                 templateUrl: 'templates/cliente/adicionarCliente.html',
                 controller: 'AdicionarClienteCtrl'
             })
             .state('editarCliente', {
-                url: '/editar-cliente',
+                url: '/editar-cliente/{cliente}',
                 templateUrl: 'templates/cliente/editarCliente.html',
-                controller: 'EditarClienteCtrl'
+                controller: 'AdicionarClienteCtrl'
             })
             .state('tab', {
                 abstract: true,

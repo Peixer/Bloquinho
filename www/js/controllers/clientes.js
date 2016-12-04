@@ -3,6 +3,7 @@ angular.module('starter.controllers')
     '$scope', '$state', '$ionicActionSheet', '$ionicLoading', '$repositorio',
     function ($scope, $state, $ionicActionSheet, $ionicLoading, $repositorio) {
       $scope.clientes = [];
+
       function inicializar() {
         $ionicLoading.show({
           template: '<ion-spinner icon="android"></ion-spinner>',
@@ -18,36 +19,20 @@ angular.module('starter.controllers')
       inicializar();
 
       $scope.adicionarCliente = function () {
-        $state.go('adicionarClientes');
+        $state.go('adicionarCliente', { "cliente": null });
       };
 
-      $scope.detalhesCliente = function (index) {
+      $scope.editarCliente = function (index) {
         var cliente = $scope.clientes[index];
 
-        $state.go('detalhesClientes', { "product": JSON.stringify(cliente) });
+        $state.go('editarCliente', { "cliente": JSON.stringify(cliente) });
       };
 
-      $scope.showActionSheet = function () {
-        $ionicActionSheet.show({
-          buttons: [{
-            text: 'Ver Detalhes'
-          }, {
-            text: 'Ver Entrega'
-          }],
-          titleText: 'O que fazer?',
-          cancelText: 'Cancelar',
-          cancel: function () {
-            // Fazer alguma p/ cancelamento
-          },
-          buttonClicked: function (index) {
-            switch (index) {
-              case 0:
-                break;
-              case 1:
-                break;
-            }
-          }
-        });
-      };
+      $scope.deletarCliente = function (index) {
+        var cliente = $scope.clientes[index];
+
+        $repositorio.deletarCliente(cliente);
+        inicializar();
+      }
     }
   ]);

@@ -2,7 +2,7 @@ angular.module('starter.controllers')
     .controller('DetalhesClienteCtrl', [
         '$scope', '$state', '$stateParams', '$repositorio', function ($scope, $state, $stateParams, $repositorio) {
 
-            $scope.cliente = JSON.parse($stateParams.product);
+            $scope.cliente = JSON.parse($stateParams.cliente);
 
             $scope.deletarCliente = function () {
                 $repositorio.deletarCliente($scope.cliente);
@@ -10,7 +10,7 @@ angular.module('starter.controllers')
             };
 
             $scope.editarCliente = function () {
-                $state.go('editarClientes');
+                $state.go('editarCliente', { "cliente": $stateParams.cliente });
             }
 
         }]);
