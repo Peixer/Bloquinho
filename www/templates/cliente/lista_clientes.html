@@ -6,7 +6,8 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
-    <ion-list>
+       <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+         <ion-list>
       <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes">
         <i class="icon ion-person-stalker"></i>
         <h2>{{x.nome}}</h2>

@@ -25,6 +25,12 @@ angular.module('starter.services')
             return items;
         };
 
+        this.listar = function () {
+            return db.allDocs({
+                include_docs: true
+            });
+        };
+
         this.gravarCliente = function (cliente) {
             if (cliente._id != null) {
                 atualizarCliente(cliente);

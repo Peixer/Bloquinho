@@ -5,15 +5,18 @@ angular.module('starter.controllers')
       $scope.clientes = [];
 
       function inicializar() {
-        $ionicLoading.show({
-          template: '<ion-spinner icon="android"></ion-spinner>',
-          hideOnStageChange: true
+        $repositorio.listar().then(function (data) {
+          var items = [];
+          angular.forEach(data.rows, function (value, key) {
+            items.push(value.doc);
+          });
+          console.log(items);
+
+          $scope.clientes = items;
+          $scope.$broadcast('scroll.refreshComplete');
+        }, function (data) {
+          $scope.$broadcast('scroll.refreshComplete');
         });
-
-        $scope.clientes = $repositorio.listarClientes();
-        console.log($scope.clientes);
-
-        $ionicLoading.hide();
       };
 
       inicializar();
@@ -34,5 +37,10 @@ angular.module('starter.controllers')
         $repositorio.deletarCliente(cliente);
         inicializar();
       }
+
+      $scope.doRefresh = function () {
+        inicializar();
+      };
+
     }
   ]);
