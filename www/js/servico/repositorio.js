@@ -31,6 +31,7 @@ angular.module('starter.services')
                 total: item.total,
                 endereco: item.endereco,
                 email: item.email,
+                telefone: item.telefone
             }).then(function (response) {
                 console.log(response)
             }).catch(function (error) {
@@ -40,7 +41,7 @@ angular.module('starter.services')
 
     }]);
 
-//todo como deveria ficar o meu registro de clientes
+//todo como deveria ficar o registro de cliente
 // {
 //     Nome,
 //         Endereco,
