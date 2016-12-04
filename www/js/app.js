@@ -4,7 +4,8 @@ angular.module('starter.services', []);
 angular.module('starter', [
     'ionic',
     'starter.controllers',
-    'starter.services'])
+    'starter.services',
+    'ngResource'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -22,15 +23,20 @@ angular.module('starter', [
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('detalhesClientes', {
-                url: '/detalhes',
+            .state('detalhesCliente', {
+                url: '/detalhes/{product}',
                 templateUrl: 'templates/cliente/detalhesCliente.html',
                 controller: 'DetalhesClienteCtrl'
             })
-            .state('adicionarClientes', {
+            .state('adicionarCliente', {
                 url: '/adicionar-cliente',
                 templateUrl: 'templates/cliente/adicionarCliente.html',
                 controller: 'AdicionarClienteCtrl'
+            })
+            .state('editarCliente', {
+                url: '/editar-cliente',
+                templateUrl: 'templates/cliente/editarCliente.html',
+                controller: 'EditarClienteCtrl'
             })
             .state('tab', {
                 abstract: true,

@@ -2,7 +2,7 @@ angular.module('starter.controllers')
   .controller('ClientesCtrl', [
     '$scope', '$state', '$ionicActionSheet', '$ionicLoading', '$repositorio',
     function ($scope, $state, $ionicActionSheet, $ionicLoading, $repositorio) {
-
+      $scope.clientes = [];
       function inicializar() {
         $ionicLoading.show({
           template: '<ion-spinner icon="android"></ion-spinner>',
@@ -17,24 +17,14 @@ angular.module('starter.controllers')
 
       inicializar();
 
-      function adicionarCliente2() {
-
-        var item = {
-          nome: "Joao Vilmar Peixer",
-          email: "jveixer@hotmail.com",
-          endereco: "Rua dos caçadores",
-          total: 300
-        }
-
-        $repositorio.gravarCliente(item);
-      };
-
       $scope.adicionarCliente = function () {
         $state.go('adicionarClientes');
       };
 
-      $scope.proximaTela = function () {
-        $state.go('detalhesClientes');
+      $scope.detalhesCliente = function (index) {
+        var cliente = $scope.clientes[index];
+
+        $state.go('detalhesClientes', { "product": JSON.stringify(cliente) });
       };
 
       $scope.showActionSheet = function () {

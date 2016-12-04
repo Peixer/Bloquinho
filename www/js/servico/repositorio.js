@@ -39,6 +39,10 @@ angular.module('starter.services')
             });
         };
 
+        this.deletarCliente = function (item) {
+            db.remove(item._id, item._rev);
+        };
+
     }]);
 
 //todo como deveria ficar o registro de cliente

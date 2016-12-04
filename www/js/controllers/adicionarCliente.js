@@ -1,15 +1,16 @@
 angular.module('starter.controllers')
     .controller('AdicionarClienteCtrl', [
-        '$scope', '$repositorio', '$ionicPopup', function ($scope, $repositorio, $ionicPopup) {
+        '$scope', '$repositorio', '$ionicPopup', function($scope, $repositorio, $ionicPopup) {
 
             $scope.cliente = {};
             inicializarCliente();
 
-            $scope.adicionarCliente = function () {
+            $scope.adicionarCliente = function() {
 
                 if (validarCampos()) {
                     $repositorio.gravarCliente($scope.cliente);
                     inicializarCliente();
+                    // Informar que cliente foi adicionado com sucesso
                 }
             };
 
