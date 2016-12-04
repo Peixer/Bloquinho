@@ -1,17 +1,17 @@
 <ion-view>
-    <ion-nav-bar class="bar bar-positive">
-        <ion-nav-title>Lista de clientes</ion-nav-title>
-    </ion-nav-bar>
-
-    <ion-content class="padding">
-        <ion-list>
-            <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes"
-                      ng-click="proximaTela()" on-hold="showActionSheet()">
-                <i class="icon ion-person-stalker"></i>
-                <h2>{{x.nome}}</h2>
-                <h4 ng-class="{'vermelho': x.estaNegativo, 'verde': !x.estaNegativo}">R$ {{x.total}}</h4>
-            </ion-item>
-        </ion-list>
-
-    </ion-content>
+  <ion-nav-bar class="bar bar-positive">
+    <ion-nav-title>Lista de clientes</ion-nav-title>
+    <ion-nav-buttons side="right">
+      <button class="button ion-person-add" ng-click="adicionarCliente()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes" ng-click="proximaTela()" on-hold="showActionSheet()">
+        <i class="icon ion-person-stalker"></i>
+        <h2>{{x.nome}}</h2>
+        <h4 ng-class="{'vermelho': x.estaNegativo, 'verde': !x.estaNegativo}">R$ {{x.total}}</h4>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

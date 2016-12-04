@@ -1,8 +1,10 @@
 angular.module('starter.controllers', []);
+angular.module('starter.services', []);
 
 angular.module('starter', [
     'ionic',
-    'starter.controllers'])
+    'starter.controllers',
+    'starter.services'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -20,6 +22,16 @@ angular.module('starter', [
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
+            .state('detalhesClientes', {
+                url: '/detalhes',
+                templateUrl: 'templates/cliente/detalhesCliente.html',
+                controller: 'DetalhesClienteCtrl'
+            })
+            .state('adicionarClientes', {
+                url: '/adicionar-cliente',
+                templateUrl: 'templates/cliente/adicionarCliente.html',
+                controller: 'AdicionarClienteCtrl'
+            })
             .state('tab', {
                 abstract: true,
                 url: '/tab',

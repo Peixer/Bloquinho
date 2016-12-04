@@ -1,7 +1,12 @@
-/* Empty. Add your own CSS if you like */
-.vermelho{
-    color: red;
+.vermelho {
+  color: red;
 }
-.verde{
-    color: green;
+
+.verde {
+  color: green;
+}
+
+.imagem_cliente {
+  padding-left: 32%;
+  padding-bottom: 20px;
 }
