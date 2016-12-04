@@ -1,0 +1,41 @@
+<ion-view>
+    <ion-nav-bar class="bar bar-positive" align-title="center">
+        <ion-nav-title>Registros - {{cliente.nome}}</ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-clear ion-plus botao_barra_superior" ng-click="criarRegistro()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="padding has-header">
+        <h1 style="align-center: true;">Total R$ {{cliente.total}}</h1>
+        <ion-list>
+            <ion-item>
+                <label>informacoes </label>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+</ion-view>
+
+<script id="modal.html" type="text/ng-template">
+   <ion-modal-view id="modalRegistro" class="ion-nifty-modal">
+    <div class="ion-modal-content-custom">
+      <ion-content class="padding">
+         <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Descrição</span>
+                <input type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Valor</span>
+                <input type="number">
+            </label>
+         </div>
+           
+            <div class="row row-bottom">
+                 <button class="button button-full button-balanced" style="font-size:27px;" ng-click="closeModal()">Salvar</button>
+            </div>
+      </ion-content>
+    </div>
+  </ion-modal-view>
+</script>

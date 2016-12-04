@@ -42,5 +42,9 @@ angular.module('starter.controllers')
         inicializar();
       };
 
+      $scope.registros = function (index) {
+
+        $state.go('registroCliente', { "cliente": null });
+      };
     }
   ]);

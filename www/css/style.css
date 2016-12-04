@@ -14,3 +14,8 @@
 .botao_barra_superior {
   font-size: 35px !important;
 }
+
+#modalRegistro {
+  height: 200px !important;
+  top: 35%;
+}

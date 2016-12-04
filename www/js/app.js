@@ -38,6 +38,11 @@ angular.module('starter', [
                 templateUrl: 'templates/cliente/editarCliente.html',
                 controller: 'AdicionarClienteCtrl'
             })
+            .state('registroCliente', {
+                url: '/registro-cliente/{cliente}',
+                templateUrl: 'templates/registro/registroCliente.html',
+                controller: 'RegistroClienteCtrl'
+            })
             .state('tab', {
                 abstract: true,
                 cache: false,
