@@ -33,29 +33,25 @@ angular.module('starter.services')
 
         this.gravarCliente = function (cliente) {
             if (cliente._id != null) {
-                atualizarCliente(cliente);
+                return atualizarCliente(cliente);
             } else {
-                adicionarCliente(cliente);
+                return adicionarCliente(cliente);
             }
         };
 
         function adicionarCliente(cliente) {
-            db.post({
+            return db.post({
                 nome: cliente.nome,
                 total: cliente.total,
                 endereco: cliente.endereco,
                 email: cliente.email,
                 telefone: cliente.telefone,
                 movimentacoes: cliente.movimentacoes
-            }).then(function (response) {
-                console.log(response)
-            }).catch(function (error) {
-                console.log(error);
             });
         };
 
         function atualizarCliente(cliente) {
-            db.put({
+            return db.put({
                 _id: cliente._id,
                 _rev: cliente._rev,
                 nome: cliente.nome,
@@ -64,10 +60,6 @@ angular.module('starter.services')
                 email: cliente.email,
                 telefone: cliente.telefone,
                 movimentacoes: cliente.movimentacoes
-            }).then(function (response) {
-                console.log(response)
-            }).catch(function (error) {
-                console.log(error);
             });
         };
 

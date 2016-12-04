@@ -6,7 +6,7 @@ angular.module('starter.controllers')
             $scope.cliente = {};
             $scope.registro = {}
             $scope.total = 200;
-            
+
             $scope.estaComSaldoPositivo = function () {
                 return $scope.cliente.total >= 0;
             };
@@ -29,7 +29,11 @@ angular.module('starter.controllers')
 
                     adicionarRegistroAoCliente();
 
-                    $repositorio.gravarCliente($scope.cliente);
+                    var promisseGravarCliente = $repositorio.gravarCliente($scope.cliente);
+                    promisseGravarCliente.then(function (response) {
+                        $scope.cliente._id = response.id;
+                        $scope.cliente._rev = response.rev;
+                    });
 
                     limparRegistro();
                 }
