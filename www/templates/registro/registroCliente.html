@@ -6,17 +6,27 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-  <div class="bar bar-subheader">
-        <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo, 'verde': estaComSaldoPositivo}">Total: R$ {{cliente.total}}</h2>
+    <div class="bar bar-subheader">
+        <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo(), 'verde': estaComSaldoPositivo()}">Total: R$ {{cliente.total}}</h2>
     </div>
-
 
     <ion-content class="padding has-subheader">
         <ion-list>
             <ion-item class="item-avatar item-icon-left" ng-repeat="x in cliente.movimentacoes track by $index">
-                 <i class="icon ion-cash"></i>
-                <h2 style="font-size: 15px;">{{x.descricao}}</h2>
-                <h3 ng-class="{'vermelho': !x.ehRecibo, 'verde': x.ehRecibo}">R$ {{x.valor}}</h3>
+                <i class="icon ion-cash"></i>
+
+                <div class="row">
+                    <div class="col col-80">
+                        <h2 style="font-size: 15px;">{{x.descricao}}</h2>
+                        <h4>{{x.data | limitTo: 10 | date: 'dd/MM/yyyy'}}</h4>
+                    </div>
+                    <div class="col text-right">
+                        <h2 ng-class="{'vermelho': !x.ehEntrada, 'verde': x.ehEntrada}">R$ {{x.valor}}</h2>
+                    </div>
+                </div>
+                <ion-option-button class="button button-assertive icon-left ion-trash-a" ng-click="deletarRegistro($index)">
+                    Deletar
+                </ion-option-button>
             </ion-item>
         </ion-list>
     </ion-content>
@@ -36,6 +46,11 @@
                 <span class="input-label">Valor</span>
                 <input type="number" ng-model="registro.valor">
             </label>
+            <label class="item item-input">
+                <span class="input-label">Data</span>
+                <input type="date" ng-model="registro.data">
+            </label>
+            <ion-toggle ng-model="registro.ehEntrada" ng-checked="registro.ehEntrada" toggle-class="toggle-balanced">Entrada</ion-toggle>
          </div>
            
             <div class="row row-bottom">

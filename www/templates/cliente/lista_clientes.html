@@ -11,7 +11,7 @@
       <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes" ng-click="registros($index)">
         <i class="icon ion-person-stalker"></i>
         <h2>{{x.nome}}</h2>
-        <h4 ng-class="{'vermelho': x.estaNegativo, 'verde': !x.estaNegativo}">R$ {{x.total}}</h4>
+        <h4 ng-class="{'vermelho': !estaPositivo($index), 'verde': estaPositivo($index)}">R$ {{x.total}}</h4>
         <ion-option-button class="button button-assertive icon-left ion-trash-a" ng-click="deletarCliente($index)">
           Deletar
         </ion-option-button>

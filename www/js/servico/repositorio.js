@@ -42,7 +42,7 @@ angular.module('starter.services')
         function adicionarCliente(cliente) {
             return db.post({
                 nome: cliente.nome,
-                total: cliente.total,
+                total: cliente.total,                
                 endereco: cliente.endereco,
                 email: cliente.email,
                 telefone: cliente.telefone,
@@ -75,7 +75,7 @@ angular.module('starter.services')
 
 //todo como deveria ficar o registro de cliente
 // {
-//     Nome,
+//         Nome,
 //         Endereco,
 //         Telefone,
 //         Email,

@@ -43,9 +43,13 @@ angular.module('starter.controllers')
       };
 
       $scope.registros = function (index) {
-
         var cliente = $scope.clientes[index];
         $state.go('registroCliente', { "id": cliente._id });
       };
+
+      $scope.estaPositivo = function (index) {
+        var cliente = $scope.clientes[index];
+        return cliente.total >= 0;
+      }
     }
   ]);
