@@ -25,12 +25,12 @@ angular.module('starter', [
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('adicionarCliente', {
-                url: '/adicionar-cliente/{cliente}',
+                url: '/adicionar-cliente/{id}',
                 templateUrl: 'templates/cliente/adicionarCliente.html',
                 controller: 'AdicionarClienteCtrl'
             })
             .state('editarCliente', {
-                url: '/editar-cliente/{cliente}',
+                url: '/editar-cliente/{id}',
                 templateUrl: 'templates/cliente/editarCliente.html',
                 controller: 'AdicionarClienteCtrl'
             })

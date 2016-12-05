@@ -4,6 +4,9 @@
         <ion-nav-buttons side="right">
             <button class="button button-clear ion-archive botao_barra_superior" ng-click="adicionarCliente()"></button>
         </ion-nav-buttons>
+        <ion-nav-buttons side="left">
+            <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
+        </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content class="padding">
@@ -24,6 +27,8 @@
                 <input type="text" placeholder="Telefone" ng-model="cliente.telefone"></input>
             </ion-item>
         </ion-list>
+
+        <button class="button button-full button-assertive" ng-click="limpar()">Limpar</button>
 
     </ion-content>
 </ion-view>

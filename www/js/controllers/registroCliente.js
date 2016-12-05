@@ -1,13 +1,13 @@
 angular.module('starter.controllers')
     .controller('RegistroClienteCtrl', [
-        '$scope', '$ionicModal', '$stateParams', '$repositorio', '$ionicPopup', '$ionicHistory',
-        function ($scope, $ionicModal, $stateParams, $repositorio, $ionicPopup, $ionicHistory) {
+        '$scope', '$ionicModal', '$stateParams', '$repositorio', '$ionicPopup', '$state',
+        function($scope, $ionicModal, $stateParams, $repositorio, $ionicPopup, $state) {
             var efeito = 'fade-in-scale';
 
             $scope.cliente = {};
             $scope.registro = {}
 
-            $scope.estaComSaldoPositivo = function () {
+            $scope.estaComSaldoPositivo = function() {
                 return $scope.cliente.total >= 0;
             };
 
@@ -17,11 +17,11 @@ angular.module('starter.controllers')
 
             limparRegistro();
 
-            $scope.criarRegistro = function () {
+            $scope.criarRegistro = function() {
                 $scope.modal.show();
             };
 
-            $scope.salvar = function () {
+            $scope.salvar = function() {
                 if (validarRegistro()) {
                     $scope.modal.hide();
 
@@ -31,18 +31,15 @@ angular.module('starter.controllers')
                 }
             };
 
-            $scope.voltar = function () {
-                var backView = $ionicHistory.backView();
-                
-                if (backView != null)
-                    backView.go();
+            $scope.voltar = function() {
+                $state.go('tab.clientes');
             };
 
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 $scope.modal.remove();
             });
 
-            $scope.deletarRegistro = function (index) {
+            $scope.deletarRegistro = function(index) {
                 removerRegistroDoCliente(index);
                 gravarInformacoesCliente();
             };
@@ -74,7 +71,7 @@ angular.module('starter.controllers')
             };
 
             function inicializar() {
-                $repositorio.obterClienteComId($stateParams.id).then(function (doc) {
+                $repositorio.obterClienteComId($stateParams.id).then(function(doc) {
                     $scope.cliente = doc;
                     console.log($scope.cliente);
                 });
@@ -108,14 +105,14 @@ angular.module('starter.controllers')
                 $ionicModal.fromTemplateUrl('modal.html', {
                     scope: $scope,
                     animation: efeito
-                }).then(function (modal) {
+                }).then(function(modal) {
                     $scope.modal = modal;
                 });
             };
 
             function gravarInformacoesCliente() {
                 var promisseGravarCliente = $repositorio.gravarCliente($scope.cliente);
-                promisseGravarCliente.then(function (resposta) {
+                promisseGravarCliente.then(function(resposta) {
                     $scope.cliente._id = resposta.id;
                     $scope.cliente._rev = resposta.rev;
                 });

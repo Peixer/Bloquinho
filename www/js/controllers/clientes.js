@@ -22,13 +22,13 @@ angular.module('starter.controllers')
       inicializar();
 
       $scope.adicionarCliente = function () {
-        $state.go('adicionarCliente', { "cliente": null });
+        $state.go('adicionarCliente', { "id": "" });
       };
 
       $scope.editarCliente = function (index) {
         var cliente = $scope.clientes[index];
 
-        $state.go('editarCliente', { "cliente": JSON.stringify(cliente) });
+        $state.go('editarCliente', { "id": cliente._id });
       };
 
       $scope.deletarCliente = function (index) {

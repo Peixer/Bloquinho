@@ -4,6 +4,7 @@ angular.module('starter.controllers')
         function ($scope, $state, $repositorio, $ionicPopup, $stateParams) {
 
             $scope.cliente = {}
+
             inicializarCliente();
 
             $scope.adicionarCliente = function () {
@@ -13,6 +14,14 @@ angular.module('starter.controllers')
 
                     $state.go('tab.clientes');
                 }
+            };
+
+            $scope.limpar = function () {
+                inicializarCliente();
+            };
+
+            $scope.voltar = function () {
+                $state.go('tab.clientes');
             };
 
             function validarCampos() {
@@ -37,8 +46,10 @@ angular.module('starter.controllers')
             };
 
             function inicializarCliente() {
-                if ($stateParams.cliente != '') {
-                    $scope.cliente = JSON.parse($stateParams.cliente);
+                if ($stateParams.id != '') {
+                    $repositorio.obterClienteComId($stateParams.id).then(function (doc) {
+                        $scope.cliente = doc;
+                    });
                 } else {
                     $scope.cliente = {
                         total: 0,
@@ -48,8 +59,6 @@ angular.module('starter.controllers')
                         endereco: ''
                     };
                 }
-            }
-
-
+            };
         }
     ]);
