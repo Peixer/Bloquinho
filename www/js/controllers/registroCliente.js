@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('RegistroClienteCtrl', [
-        '$scope', '$ionicModal', '$stateParams', '$repositorio',
-        function ($scope, $ionicModal, $stateParams, $repositorio) {
+        '$scope', '$ionicModal', '$stateParams', '$repositorio', '$ionicPopup', '$ionicHistory',
+        function ($scope, $ionicModal, $stateParams, $repositorio, $ionicPopup, $ionicHistory) {
             var efeito = 'fade-in-scale';
 
             $scope.cliente = {};
@@ -31,6 +31,13 @@ angular.module('starter.controllers')
                 }
             };
 
+            $scope.voltar = function () {
+                var backView = $ionicHistory.backView();
+                
+                if (backView != null)
+                    backView.go();
+            };
+
             $scope.$on('$destroy', function () {
                 $scope.modal.remove();
             });
@@ -41,13 +48,27 @@ angular.module('starter.controllers')
             };
 
             function limparRegistro() {
-                $scope.registro = { ehEntrada: true, valor: 0, descricao: '', data: new Date() }
+                $scope.registro = {
+                    ehEntrada: true,
+                    valor: 0,
+                    descricao: '',
+                    data: new Date()
+                }
             };
 
             function validarRegistro() {
-                if ($scope.registro.descricao == '' || $scope.registro.valor == 0) {
+                if ($scope.registro.descricao == '') {
+                    $ionicPopup.alert({
+                        title: 'Atenção',
+                        template: 'Descrição do registro está inválida'
+                    });
                     return false;
-                    //colocar mensagem aqui
+                } else if ($scope.registro.valor == 0) {
+                    $ionicPopup.alert({
+                        title: 'Atenção',
+                        template: 'Valor do registro está inválido'
+                    });
+                    return false;
                 }
                 return true;
             };
@@ -100,4 +121,5 @@ angular.module('starter.controllers')
                 });
             };
 
-        }]);
+        }
+    ]);
