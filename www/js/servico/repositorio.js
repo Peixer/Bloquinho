@@ -45,9 +45,7 @@ angular.module('starter.services')
                 total: cliente.total,                
                 endereco: cliente.endereco,
                 email: cliente.email,
-                telefone: cliente.telefone,
-                movimentacoes: cliente.movimentacoes
-            });
+                telefone: cliente.telefone            });
         };
 
         function atualizarCliente(cliente) {
