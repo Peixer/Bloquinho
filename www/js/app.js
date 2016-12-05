@@ -24,11 +24,6 @@ angular.module('starter', [
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('detalhesCliente', {
-                url: '/detalhes/{cliente}',
-                templateUrl: 'templates/cliente/detalhesCliente.html',
-                controller: 'DetalhesClienteCtrl'
-            })
             .state('adicionarCliente', {
                 url: '/adicionar-cliente/{cliente}',
                 templateUrl: 'templates/cliente/adicionarCliente.html',
