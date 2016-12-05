@@ -82,6 +82,7 @@ angular.module('starter.controllers')
                     $scope.cliente.movimentacoes = [];
                 }
 
+                $scope.registro.data = $scope.registro.data.toLocaleDateString();
                 $scope.cliente.movimentacoes.push($scope.registro);
 
                 if ($scope.registro.ehEntrada)
