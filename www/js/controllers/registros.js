@@ -27,7 +27,8 @@ angular.module('starter.controllers')
                             $scope.registros.push(registroDoCliente);
                         });
                     });
-
+                    
+                    console.log( $scope.registros);
                     $ionicLoading.hide();
                 });
             };
