@@ -3,7 +3,7 @@ angular.module('starter.services')
         var db;
 
         function inicializarDB() {
-            db = new PouchDB('bloquinho_sql', { adapter: 'websql' });
+            db = new PouchDB('bloquinho');
         };
 
         if (!db)

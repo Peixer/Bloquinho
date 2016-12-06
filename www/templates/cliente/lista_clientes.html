@@ -1,13 +1,12 @@
 <ion-view>
-  <ion-nav-bar class="bar bar-positive">
-    <ion-nav-title>Clientes</ion-nav-title>
-    <ion-nav-buttons side="right">
-      <button class="button button-clear ion-person-add botao_barra_superior" ng-click="adicionarCliente()"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+  <ion-nav-title>Clientes</ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear ion-person-add botao_barra_superior" ng-click="adicionarCliente()"></button>
+  </ion-nav-buttons>
+
   <ion-content class="padding">
-       <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
-         <ion-list>
+    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
       <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in clientes" ng-click="registros($index)">
         <i class="icon ion-person-stalker"></i>
         <h2>{{x.nome}}</h2>
@@ -19,6 +18,7 @@
           Editar
         </ion-option-button>
       </ion-item>
+      <br>
     </ion-list>
   </ion-content>
 </ion-view>
