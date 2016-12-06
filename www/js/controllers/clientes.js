@@ -1,16 +1,10 @@
 angular.module('starter.controllers')
   .controller('ClientesCtrl', [
-    '$scope', '$state', '$ionicActionSheet', '$ionicLoading', '$repositorio',
-    function ($scope, $state, $ionicActionSheet, $ionicLoading, $repositorio) {
+    '$scope', '$state', '$ionicActionSheet', '$repositorio',
+    function ($scope, $state, $ionicActionSheet, $repositorio) {
       $scope.clientes = [];
 
       function inicializar() {
-
-        $ionicLoading.show({
-          template: '<ion-spinner icon="android"></ion-spinner>',
-          hideOnStageChange: true
-        });
-
         $repositorio.listar().then(function (data) {
 
           var items = [];
@@ -20,7 +14,6 @@ angular.module('starter.controllers')
 
           console.log(items);
           $scope.clientes = items;
-          $ionicLoading.hide();
 
           $scope.$broadcast('scroll.refreshComplete');
         }, function (data) {

@@ -50,6 +50,7 @@ angular.module('starter.controllers')
         if ($stateParams.id != '') {
           $repositorio.obterClienteComId($stateParams.id).then(function (doc) {
             $scope.cliente = doc;
+             $scope.$apply() 
           });
         } else {
           zerarCliente();

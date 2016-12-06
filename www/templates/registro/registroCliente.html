@@ -1,42 +1,35 @@
 <ion-nav-bar class="bar bar-positive" align-title="center" style="display: block !important;">
-    <ion-nav-title>{{cliente.nome}}
-    </ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-clear ion-plus botao_barra_superior" ng-click="criarRegistro()"></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="left">
-        <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
-    </ion-nav-buttons>
+  <ion-nav-title>{{cliente.nome}}
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear ion-plus botao_barra_superior" ng-click="criarRegistro()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+    <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
+  </ion-nav-buttons>
 </ion-nav-bar>
-
 <ion-view>
-    <div class="bar bar-subheader">
-        <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo(), 'verde': estaComSaldoPositivo()}">Total: R$ {{cliente.total}}</h2>
-    </div>
-
-    <ion-content class="padding has-subheader">
-        <ion-list>
-            <ion-item class="item-avatar item-icon-left" ng-repeat="x in cliente.movimentacoes track by $index">
-                <i class="icon ion-cash"></i>
-
-                <div class="row">
-                    <div class="col col-80">
-                        <h2 style="font-size: 15px;">{{x.descricao}}</h2>
-                        <h4>{{x.data | limitTo: 10 | date: 'dd/MM/yyyy'}}</h4>
-                    </div>
-                    <div class="col text-right">
-                        <h2 ng-class="{'vermelho': !x.ehEntrada, 'verde': x.ehEntrada}">R$ {{x.valor}}</h2>
-                    </div>
-                </div>
-                <ion-option-button class="button button-assertive icon-left ion-trash-a" ng-click="deletarRegistro($index)">
-                    Deletar
-                </ion-option-button>
-            </ion-item>
-        </ion-list>
-    </ion-content>
-
+  <div class="bar bar-subheader">
+    <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo(), 'verde': estaComSaldoPositivo()}">Total: R$ {{cliente.total}}</h2>
+  </div>
+  <ion-content class="padding has-subheader">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-left" ng-repeat="x in cliente.movimentacoes track by $index">
+        <i class="icon ion-cash"></i>
+        <div class="row">
+          <div class="col">
+            <h2 style="font-size: 15px;">{{x.descricao}}</h2>
+            <h4> {{x.data | limitTo: 10 | date: 'dd/MM/yyyy'}} - <a ng-class="{'vermelho': !x.ehEntrada, 'verde': x.ehEntrada}">R$ {{x.valor}}</a></h4>
+          </div>
+        </div>
+        <ion-option-button class="button button-assertive icon-left ion-trash-a" ng-click="deletarRegistro($index)">
+          Deletar
+        </ion-option-button>
+      </ion-item>
+      <br>
+    </ion-list>
+  </ion-content>
 </ion-view>
-
 <script id="modal.html" type="text/ng-template">
    <ion-modal-view id="modalRegistro" class="ion-nifty-modal">
     <div class="ion-modal-content-custom">

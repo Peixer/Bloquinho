@@ -1,34 +1,30 @@
 <ion-view>
-    <ion-nav-bar class="bar bar-positive" align-title="center">
-        <ion-nav-title>Editar cliente</ion-nav-title>
-        <ion-nav-buttons side="right">
-            <button class="button button-clear ion-archive botao_barra_superior" ng-click="adicionarCliente()"></button>
-        </ion-nav-buttons>
-        <ion-nav-buttons side="left">
-            <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
-        </ion-nav-buttons>
-    </ion-nav-bar>
-
-    <ion-content class="padding">
-
-        <img class="imagem_cliente" src="img/person-man.png" />
-
-        <ion-list>
-            <ion-item class="item item-input">
-                <input type="text" placeholder="Nome" ng-model="cliente.nome">
-            </ion-item>
-            <ion-item class="item item-input">
-                <input type="text" placeholder="Email" ng-model="cliente.email"></input>
-            </ion-item>
-            <ion-item class="item item-input">
-                <input type="text" placeholder="Endereço" ng-model="cliente.endereco">
-            </ion-item>
-            <ion-item class="item item-input">
-                <input type="text" placeholder="Telefone" ng-model="cliente.telefone"></input>
-            </ion-item>
-        </ion-list>
-
-        <button class="button button-full button-assertive" ng-click="limpar()">Limpar</button>
-
-    </ion-content>
+  <ion-nav-bar class="bar bar-positive" align-title="center">
+    <ion-nav-title>Editar cliente</ion-nav-title>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear ion-archive botao_barra_superior" ng-click="adicionarCliente()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+      <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <img class="imagem_cliente" src="img/person-man.png" />
+    <ion-list>
+      <ion-item class="item item-input">
+        <input type="text" placeholder="Nome" ng-model="cliente.nome">
+      </ion-item>
+      <ion-item class="item item-input">
+        <input type="text" placeholder="Email" ng-model="cliente.email"></input>
+      </ion-item>
+      <ion-item class="item item-input">
+        <input type="text" placeholder="Endereço" ng-model="cliente.endereco">
+      </ion-item>
+      <ion-item class="item item-input">
+        <input type="text" placeholder="Telefone" ng-model="cliente.telefone"></input>
+      </ion-item>
+      <br>
+    </ion-list>
+    <button class="button button-full button-assertive" ng-click="limpar()">Limpar</button>
+  </ion-content>
 </ion-view>

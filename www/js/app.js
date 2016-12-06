@@ -44,7 +44,6 @@ angular.module('starter', [
             })
             .state('tab', {
                 abstract: true,
-                cache: false,
                 url: '/tab',
                 templateUrl: 'templates/tab.html',
                 controller: 'MenuCtrl'
