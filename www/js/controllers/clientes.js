@@ -12,12 +12,13 @@ angular.module('starter.controllers')
         });
 
         $repositorio.listar().then(function (data) {
+
           var items = [];
           angular.forEach(data.rows, function (value, key) {
             items.push(value.doc);
           });
-          console.log(items);
 
+          console.log(items);
           $scope.clientes = items;
           $ionicLoading.hide();
 
@@ -47,10 +48,11 @@ angular.module('starter.controllers')
         var cliente = $scope.clientes[index];
 
         $repositorio.deletarCliente(cliente);
-        inicializar();
+
+        $scope.clientes.splice(index, 1);
       };
 
-      $scope.doRefresh = function () {
+      $scope.refresh = function () {
         inicializar();
       };
 
