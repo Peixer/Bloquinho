@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
   .controller('RegistroClienteCtrl', [
-    '$scope', '$ionicModal', '$stateParams', '$repositorio', '$ionicPopup', '$state', '$ionicLoading',
-    function ($scope, $ionicModal, $stateParams, $repositorio, $ionicPopup, $state, $ionicLoading) {
+    '$scope', '$ionicModal', '$stateParams', '$repositorio', '$ionicPopup', '$state', '$ionicLoading', '$ionicHistory', '$ionicListDelegate',
+    function ($scope, $ionicModal, $stateParams, $repositorio, $ionicPopup, $state, $ionicLoading, $ionicHistory, $ionicListDelegate) {
       var efeito = 'fade-in-scale';
 
       $scope.cliente = {};
@@ -32,7 +32,7 @@ angular.module('starter.controllers')
       };
 
       $scope.voltar = function () {
-        $state.go('tab.clientes');
+        $ionicHistory.goBack();
       };
 
       $scope.$on('$destroy', function () {
@@ -42,6 +42,8 @@ angular.module('starter.controllers')
       $scope.deletarRegistro = function (index) {
         removerRegistroDoCliente(index);
         gravarInformacoesCliente();
+
+        $ionicListDelegate.closeOptionButtons();
       };
 
       function limparRegistro() {

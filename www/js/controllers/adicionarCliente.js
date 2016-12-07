@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
   .controller('AdicionarClienteCtrl', [
-    '$scope', '$state', '$repositorio', '$ionicPopup', '$stateParams',
-    function ($scope, $state, $repositorio, $ionicPopup, $stateParams) {
+    '$scope', '$state', '$repositorio', '$ionicPopup', '$stateParams', '$ionicHistory',
+    function ($scope, $state, $repositorio, $ionicPopup, $stateParams, $ionicHistory) {
 
       $scope.cliente = {}
 
@@ -13,7 +13,10 @@ angular.module('starter.controllers')
           $repositorio.gravarCliente($scope.cliente);
 
           zerarCliente();
-          $state.go('tab.clientes');
+          
+          $state.go('tab.clientes', {}, {
+            reload: true
+          });
         }
       };
 
@@ -22,7 +25,7 @@ angular.module('starter.controllers')
       };
 
       $scope.voltar = function () {
-        $state.go('tab.clientes');
+        $ionicHistory.goBack();
       };
 
       function validarCampos() {
@@ -50,7 +53,7 @@ angular.module('starter.controllers')
         if ($stateParams.id != '') {
           $repositorio.obterClienteComId($stateParams.id).then(function (doc) {
             $scope.cliente = doc;
-             $scope.$apply() 
+            $scope.$apply()
           });
         } else {
           zerarCliente();

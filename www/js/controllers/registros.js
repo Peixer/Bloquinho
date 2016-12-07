@@ -33,9 +33,12 @@ angular.module('starter.controllers')
       };
 
       $scope.refresh = function () {
-         $scope.registros = [];
+        $scope.registros = [];
         inicializar();
       };
 
+      $scope.filtroPorData = function (registro) {
+        return new Date(registro.data);
+      };
     }
   ]);

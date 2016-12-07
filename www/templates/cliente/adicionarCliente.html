@@ -4,9 +4,9 @@
     <ion-nav-buttons side="right">
       <button class="button button-clear ion-archive botao_barra_superior" ng-click="adicionarCliente()"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="left">
-      <button class="button button-clear ion-arrow-left-c botao_barra_superior" ng-click="voltar()"></button>
-    </ion-nav-buttons>
+    <ion-nav-back-button class="button-clear nuncaHide" ng-click="voltar()">
+      <i class="ion-arrow-left-c"></i> Voltar
+    </ion-nav-back-button>
   </ion-nav-bar>
   <ion-content class="padding">
     <img class="imagem_cliente" src="img/person-man.png" />

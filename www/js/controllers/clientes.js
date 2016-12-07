@@ -1,25 +1,8 @@
 angular.module('starter.controllers')
   .controller('ClientesCtrl', [
-    '$scope', '$state', '$ionicActionSheet', '$repositorio',
-    function ($scope, $state, $ionicActionSheet, $repositorio) {
+    '$scope', '$state', '$ionicActionSheet', '$repositorio', '$ionicListDelegate',
+    function ($scope, $state, $ionicActionSheet, $repositorio, $ionicListDelegate) {
       $scope.clientes = [];
-
-      function inicializar() {
-        $repositorio.listar().then(function (data) {
-
-          var items = [];
-          angular.forEach(data.rows, function (value, key) {
-            items.push(value.doc);
-          });
-
-          console.log(items);
-          $scope.clientes = items;
-
-          $scope.$broadcast('scroll.refreshComplete');
-        }, function (data) {
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-      };
 
       inicializar();
 
@@ -35,12 +18,16 @@ angular.module('starter.controllers')
         $state.go('editarCliente', {
           "id": cliente._id
         });
+
+        $ionicListDelegate.closeOptionButtons();
       };
 
       $scope.deletarCliente = function (index) {
         var cliente = $scope.clientes[index];
 
         $repositorio.deletarCliente(cliente);
+
+        $ionicListDelegate.closeOptionButtons();
 
         $scope.clientes.splice(index, 1);
       };
@@ -59,6 +46,23 @@ angular.module('starter.controllers')
       $scope.estaPositivo = function (index) {
         var cliente = $scope.clientes[index];
         return cliente.total >= 0;
+      };
+
+      function inicializar() {
+        $repositorio.listar().then(function (data) {
+
+          var items = [];
+          angular.forEach(data.rows, function (value, key) {
+            items.push(value.doc);
+          });
+
+          console.log(items);
+          $scope.clientes = items;
+
+          $scope.$broadcast('scroll.refreshComplete');
+        }, function (data) {
+          $scope.$broadcast('scroll.refreshComplete');
+        });
       };
     }
   ]);

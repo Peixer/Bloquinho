@@ -3,7 +3,7 @@
   <ion-content class="padding">
     <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="refresh()"></ion-refresher>
     <ion-list>
-      <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in registros | orderBy:'-data'" ng-click="registros($index)">
+      <ion-item class="item-avatar item-icon-left item-icon-right" ng-repeat="x in registros | orderBy : filtroPorData : true">
         <i class="icon ion-cash"></i>
         <div class="row">
           <div class="col">
