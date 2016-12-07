@@ -23,3 +23,7 @@
 .nuncaHide {
   display: block !important;
 }
+
+.backdrop-loading.active {
+  opacity: 0 !important;
+}

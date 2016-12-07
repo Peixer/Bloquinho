@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
   .controller('ClientesCtrl', [
-    '$scope', '$state', '$ionicActionSheet', '$repositorio', '$ionicListDelegate',
-    function ($scope, $state, $ionicActionSheet, $repositorio, $ionicListDelegate) {
+    '$scope', '$state', '$ionicActionSheet', '$repositorio', '$ionicListDelegate', '$ionicLoading',
+    function ($scope, $state, $ionicActionSheet, $repositorio, $ionicListDelegate, $ionicLoading) {
       $scope.clientes = [];
 
       inicializar();
@@ -49,6 +49,11 @@ angular.module('starter.controllers')
       };
 
       function inicializar() {
+        $ionicLoading.show({
+          template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
+          hideOnStageChange: true
+        });
+
         $repositorio.listar().then(function (data) {
 
           var items = [];
@@ -60,6 +65,7 @@ angular.module('starter.controllers')
           $scope.clientes = items;
 
           $scope.$broadcast('scroll.refreshComplete');
+          $ionicLoading.hide();
         }, function (data) {
           $scope.$broadcast('scroll.refreshComplete');
         });

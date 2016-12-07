@@ -75,7 +75,7 @@ angular.module('starter.controllers')
       function inicializar() {
 
         $ionicLoading.show({
-          template: '<ion-spinner icon="android"></ion-spinner>',
+          template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
           hideOnStageChange: true
         });
 

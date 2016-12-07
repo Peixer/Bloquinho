@@ -1,12 +1,17 @@
 angular.module('starter.controllers')
   .controller('RegistrosCtrl', [
-    '$scope', '$repositorio',
-    function ($scope, $repositorio) {
+    '$scope', '$repositorio', '$ionicLoading',
+    function ($scope, $repositorio, $ionicLoading) {
 
       $scope.registros = [];
       inicializar();
 
       function inicializar() {
+
+        $ionicLoading.show({
+          template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
+          hideOnStageChange: true
+        });
 
         var clientes = $repositorio.listar().then(function (clientes) {
 
@@ -26,7 +31,8 @@ angular.module('starter.controllers')
           });
 
           console.log($scope.registros);
-          $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.refreshComplete');        
+          $ionicLoading.hide();
         }, function (data) {
           $scope.$broadcast('scroll.refreshComplete');
         });
