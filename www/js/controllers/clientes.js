@@ -4,6 +4,11 @@ angular.module('starter.controllers')
     function ($scope, $state, $ionicActionSheet, $repositorio, $ionicListDelegate, $ionicLoading) {
       $scope.clientes = [];
 
+      $ionicLoading.show({
+        template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
+        hideOnStageChange: true
+      });
+
       inicializar();
 
       $scope.adicionarCliente = function () {
@@ -49,26 +54,25 @@ angular.module('starter.controllers')
       };
 
       function inicializar() {
-        $ionicLoading.show({
-          template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
-          hideOnStageChange: true
-        });
+        var promisse = $repositorio.listar();
+        setTimeout(function () {
+          promisse.then(function (data) {
 
-        $repositorio.listar().then(function (data) {
+            var items = [];
+            angular.forEach(data.rows, function (value, key) {
+              items.push(value.doc);
+            });
 
-          var items = [];
-          angular.forEach(data.rows, function (value, key) {
-            items.push(value.doc);
+            console.log(items);
+            $scope.clientes = items;
+
+            $scope.$broadcast('scroll.refreshComplete');
+            $ionicLoading.hide();
+          }, function (data) {
+            $scope.$broadcast('scroll.refreshComplete');
           });
+        }, 1000);
 
-          console.log(items);
-          $scope.clientes = items;
-
-          $scope.$broadcast('scroll.refreshComplete');
-          $ionicLoading.hide();
-        }, function (data) {
-          $scope.$broadcast('scroll.refreshComplete');
-        });
       };
     }
   ]);

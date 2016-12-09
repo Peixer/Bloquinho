@@ -11,6 +11,12 @@ angular.module('starter.controllers')
         return $scope.cliente.total >= 0;
       };
 
+
+      $ionicLoading.show({
+        template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
+        hideOnStageChange: true
+      });
+
       inicializar();
 
       inicializarModal();
@@ -73,17 +79,15 @@ angular.module('starter.controllers')
       };
 
       function inicializar() {
+        var promisse = $repositorio.obterClienteComId($stateParams.id);
 
-        $ionicLoading.show({
-          template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
-          hideOnStageChange: true
-        });
-
-        $repositorio.obterClienteComId($stateParams.id).then(function (doc) {
-          $scope.cliente = doc;
-          console.log($scope.cliente);
-          $ionicLoading.hide();
-        });
+        setTimeout(function () {
+          promisse.then(function (doc) {
+            $scope.cliente = doc;
+            console.log($scope.cliente);
+            $ionicLoading.hide();
+          });
+        }, 1000);
       };
 
       function adicionarRegistroAoCliente() {
