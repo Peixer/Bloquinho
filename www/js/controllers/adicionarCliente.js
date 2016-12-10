@@ -13,7 +13,7 @@ angular.module('starter.controllers')
           $repositorio.gravarCliente($scope.cliente);
 
           zerarCliente();
-          
+
           $state.go('tab.clientes', {}, {
             reload: true
           });
@@ -37,7 +37,7 @@ angular.module('starter.controllers')
           });
 
           return false;
-        } else if ($scope.cliente.email == '') {
+        } else if ($scope.cliente.email == '' || $scope.cliente.email == undefined) {
           $ionicPopup.alert({
             title: 'Atenção',
             template: 'Email está inválido'

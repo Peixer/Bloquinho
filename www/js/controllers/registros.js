@@ -33,6 +33,10 @@ angular.module('starter.controllers')
               });
             });
 
+
+            $scope.registros.sort(function (a, b) {
+              return  new Date(b.data).getTime() - new Date(a.data).getTime() 
+            }); 
             console.log($scope.registros);
             $scope.$broadcast('scroll.refreshComplete');
             $ionicLoading.hide();
@@ -52,10 +56,6 @@ angular.module('starter.controllers')
       $scope.recarregarListaRegistros = function () {
         $scope.registros = [];
         inicializar();
-      };
-
-      $scope.filtroPorData = function (registro) {
-        return new Date(registro.data);
       };
     }
   ]);
