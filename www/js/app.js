@@ -44,6 +44,7 @@ angular.module('starter', [
       controller: 'AdicionarClienteCtrl'
     })
     .state('registroCliente', {
+       cache: false,
       url: '/registro-cliente/{id}',
       templateUrl: 'templates/registro/registroCliente.html',
       controller: 'RegistroClienteCtrl'
