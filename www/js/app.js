@@ -1,10 +1,12 @@
 angular.module('starter.controllers', []);
 angular.module('starter.services', []);
+angular.module('starter.directives', []);
 
 angular.module('starter', [
   'ionic',
   'starter.controllers',
   'starter.services',
+  'starter.directives',
   'ngResource',
   'ngCordova'
 ])
