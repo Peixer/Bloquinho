@@ -27,3 +27,7 @@
 .backdrop-loading.active {
   opacity: 0 !important;
 }
+
+.center {
+  text-align: center !important;
+}

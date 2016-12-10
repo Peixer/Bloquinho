@@ -6,11 +6,12 @@ angular.module('starter.controllers')
 
       $scope.cliente = {};
       $scope.registro = {}
+      $scope.totalEntrada = 0;
+      $scope.totalSaida = 0;
 
       $scope.estaComSaldoPositivo = function () {
         return $scope.cliente.total >= 0;
       };
-
 
       $ionicLoading.show({
         template: '<ion-spinner class="spinner-balanced" icon="bubbles"></ion-spinner>',
@@ -25,6 +26,13 @@ angular.module('starter.controllers')
 
       $scope.criarRegistro = function () {
         $scope.modal.show();
+      };
+
+      $scope.exibirRelatorio = function () {
+        $scope.totalEntrada = calcularTotalEntrada();
+        $scope.totalSaida = calcularTotalSaida();
+
+        $scope.modalRelatorio.show();
       };
 
       $scope.salvarSaida = function () {
@@ -134,6 +142,13 @@ angular.module('starter.controllers')
         }).then(function (modal) {
           $scope.modal = modal;
         });
+
+        $ionicModal.fromTemplateUrl('modalRelatorio.html', {
+          scope: $scope,
+          animation: efeito
+        }).then(function (modal) {
+          $scope.modalRelatorio = modal;
+        });
       };
 
       function gravarInformacoesCliente() {
@@ -144,5 +159,30 @@ angular.module('starter.controllers')
         });
       };
 
+      function calcularTotalEntrada() {
+
+        var valor = 0;
+        if ($scope.cliente.movimentacoes != null) {
+          angular.forEach($scope.cliente.movimentacoes, function (registro, index) {
+            if (registro.ehEntrada) {
+              valor += registro.valor;
+            }
+          });
+        }
+        return valor;
+      };
+
+      function calcularTotalSaida() {
+
+        var valor = 0;
+        if ($scope.cliente.movimentacoes != null) {
+          angular.forEach($scope.cliente.movimentacoes, function (registro, index) {
+            if (!registro.ehEntrada) {
+              valor += registro.valor;
+            }
+          });
+        }
+        return valor;
+      };
     }
   ]);

@@ -11,6 +11,7 @@
 <ion-view>
   <div class="bar bar-subheader">
     <h2 class="title" ng-class="{'vermelho': !estaComSaldoPositivo(), 'verde': estaComSaldoPositivo()}">Total: R$ {{cliente.total}}</h2>
+    <button class='button button-clear ion-ios-list-outline botao_barra_superior' style="color: black !important;" ng-click="exibirRelatorio()"></button>
   </div>
   <ion-content class="padding has-subheader">
     <ion-list>
@@ -55,6 +56,24 @@
                   <button class="button button-balanced"  ng-click="salvarEntrada()">Entrada</button>
                 </div>
             </div>
+      </ion-content>
+    </div>
+  </ion-modal-view>
+</script>
+<script id="modalRelatorio.html" type="text/ng-template">
+   <ion-modal-view id="modalRelatorio" class="ion-nifty-modal">
+    <div class="ion-modal-content-custom">
+      <ion-content class="padding">
+        <div class="card">
+          <div class="item item-divider">
+              <h1 class="vermelho center">Total Saida</h1>
+             <h1 class="center">R$ {{totalSaida}}</h1>
+          </div>
+          <div class="item item-divider">
+             <h1 class="verde center">Total Entrada</h1>
+             <h1 class="center">R$ {{totalEntrada}}</h1>
+          </div>
+        </div>        
       </ion-content>
     </div>
   </ion-modal-view>
