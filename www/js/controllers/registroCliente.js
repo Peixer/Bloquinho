@@ -27,11 +27,22 @@ angular.module('starter.controllers')
         $scope.modal.show();
       };
 
-      $scope.salvar = function () {
+      $scope.salvarSaida = function () {
         if (validarRegistro()) {
           $scope.modal.hide();
 
-          adicionarRegistroAoCliente();
+          adicionarRegistroAoCliente(false);
+          gravarInformacoesCliente();
+          limparRegistro();
+        }
+      };
+
+      $scope.salvarEntrada = function () {
+
+        if (validarRegistro()) {
+          $scope.modal.hide();
+
+          adicionarRegistroAoCliente(true);
           gravarInformacoesCliente();
           limparRegistro();
         }
@@ -90,11 +101,12 @@ angular.module('starter.controllers')
         }, 1000);
       };
 
-      function adicionarRegistroAoCliente() {
+      function adicionarRegistroAoCliente(ehEntrada) {
         if ($scope.cliente.movimentacoes == null) {
           $scope.cliente.movimentacoes = [];
         }
 
+        $scope.registro.ehEntrada = ehEntrada;
         $scope.registro.data = $scope.registro.data.toLocaleDateString();
         $scope.cliente.movimentacoes.push($scope.registro);
 
