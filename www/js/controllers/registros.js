@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
   .controller('RegistrosCtrl', [
-    '$scope', '$repositorio', '$ionicLoading',
-    function ($scope, $repositorio, $ionicLoading) {
+    '$scope', '$repositorio', '$ionicLoading', '$state',
+    function ($scope, $repositorio, $ionicLoading, $state) {
 
       $scope.registros = [];
 
@@ -42,7 +42,14 @@ angular.module('starter.controllers')
         }, 1000);
       };
 
-      $scope.refresh = function () {
+      $scope.navegarParaTelaDeRegistros = function (index) {
+        var registro = $scope.registros[index];
+        $state.go('registroCliente', {
+          "id": registro.id
+        });
+      };
+
+      $scope.recarregarListaRegistros = function () {
         $scope.registros = [];
         inicializar();
       };
